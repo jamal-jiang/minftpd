@@ -23,11 +23,11 @@ int main(int argc, char **argv) {
         pid = fork();
         printf("pid: %d\n", pid);
         if (pid == 0) {
-            //close(listenfd);
+            // close(listenfd);
             sess.ctrl_fd = conn;
             begin_session(&sess);
         } else {
-            //close(conn);
+            close(conn);
         }
     }
     return 0;

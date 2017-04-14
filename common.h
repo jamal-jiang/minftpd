@@ -6,18 +6,34 @@
 #ifndef MINFTPD_COMMON_H
 #define MINFTPD_COMMON_H
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
-#include <errno.h>
-#include <netinet/in.h>
-#include <sys/socket.h>
+#include <sys/wait.h>
 #include <sys/types.h>
-#include <netdb.h>
-#include <fcntl.h>
-#include <arpa/inet.h>
-#include <string.h>
 #include <pwd.h>
+#include <shadow.h>
+#include <crypt.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <signal.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <linux/capability.h>
+#include <sys/syscall.h>
+#include <sys/sendfile.h>
+
+#include <time.h>
+#include <sys/stat.h>
+#include <dirent.h>
+#include <sys/time.h>
+
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
 
 #define ERR_EXIT(m) do {perror(m); exit(EXIT_FAILURE);}while(0);
 

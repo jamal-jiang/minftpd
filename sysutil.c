@@ -123,6 +123,27 @@ ssize_t readline(int sockfd, void *buf, size_t maxline) {
     return -1;
 }
 
+ssize_t writen(int fd, const void *buf, size_t count) {
+    size_t nleft = count;
+    ssize_t nwritten;
+    char *bufp = (char *) buf;
+
+    while (nleft > 0) {
+        if ((nwritten = write(fd, bufp, nleft)) < 0) {
+            if (errno == EINTR)
+                continue;
+            return -1;
+        }
+        else if (nwritten == 0)
+            continue;
+
+        bufp += nwritten;
+        nleft -= nwritten;
+    }
+
+    return count;
+}
+
 int accept_timeout(int fd, struct sockaddr_in *addr, unsigned int wait_seconds) {
     int ret;
     socklen_t addrlen = sizeof(struct sockaddr_in);
